@@ -51,6 +51,13 @@ app.get('/', function (req, res) {
    
   });
 
+  //---- Register member --------------------
+  app.post('/registermember',function(req,res){
+    console.log(req)
+    appFuctions.registermember(req,res);
+   
+  });
+
   //---- Get Data from store current date --------------------
   app.post('/getShipping',function(req,res){
     console.log(req.body.date)
