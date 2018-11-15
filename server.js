@@ -43,9 +43,18 @@ app.get('/', function (req, res) {
 })
 
 // ------------------------------------ Req appFuctions-------------------------------
-app.post('/Login',function(req,res){
+
+  //---- เข้าสู่ระบบ --------------------
+  app.post('/Login',function(req,res){
     console.log(req.body.username)
     appFuctions.Login(req,res);
+   
+  });
+
+  //---- Get Data from store current date --------------------
+  app.post('/getShipping',function(req,res){
+    console.log(req.body.date)
+    appFuctions.getShipping(req,res);
    
   });
 
