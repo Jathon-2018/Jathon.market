@@ -54,6 +54,7 @@ app.get('/', function (req, res) {
   //---- Register member --------------------
   app.post('/registermember',function(req,res){
     console.log(req.body.username)
+    console.log(req.body.password)
     appFuctions.registermember(req,res);
    
   });
