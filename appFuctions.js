@@ -105,17 +105,17 @@ exports.registermember = function (req, res)
     var users_status = 2
 
         //ตรวจสอบการใช้ซ้ำ username
-        sql = "SELECT * FROM users WHERE users_username = ? ";
-        con.query(sql, [users_username], function (err, result){
-            if (err) throw err;
+        // sql = "SELECT * FROM users WHERE users_username = ? ";
+        // con.query(sql, [users_username], function (err, result){
+        //     if (err) throw err;
 
-            if(result!="")
-            {
-                //have this username
-                res.send([{Alert:0}]); 
-                con.end();   
-            }
-            else{
+            // if(result!="")
+            // {
+            //     //have this username
+            //     res.send([{Alert:0}]); 
+            //     con.end();   
+            // }
+            // else{
                 sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_adress,users_subarea,users_area,users_provice,users_phone, users_gender,users_status) 
                 VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)`;
                 con.query(sql, [users_username,users_pass,users_fname,users_lname,users_adress,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){
@@ -124,8 +124,8 @@ exports.registermember = function (req, res)
                     con.end();                           
                 });                        
         
-            }                      
-        });
+        //     }                      
+        // });
    
                            
 }
