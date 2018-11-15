@@ -67,7 +67,8 @@ exports.getShipping = function (req, res)
         database : process.env.DB_NAME
     });
     
-    var shipping_date = new Date();
+    // var shipping_date = new Date();
+    var shipping_date = req.body.date;
     
     sql = `SELECT * FROM shipping JOIN store ON store_id = shipping_store_id WHERE shipping_date = ? `;
         con.query(sql, [shipping_date], function (err, result){if (err) throw err;
@@ -78,3 +79,72 @@ exports.getShipping = function (req, res)
      
 }
 
+//------- registemember ----------
+// สมัครสมาชิกทั่วไป
+exports.registermember = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+    
+
+    var users_username = req.body.username
+    var users_pass = req.body.password
+    var users_fname = req.body.firstname
+    var users_lname = req.body.lastname
+    var users_adress = req.body.address
+    var users_subarea = req.body.district
+    var users_area = req.body.city
+    var users_provice = req.body.province
+    var users_phone = req.body.phone
+    var users_gender = req.body.sex
+    var users_status = 2
+
+        //ตรวจสอบการใช้ซ้ำ username
+        sql = "SELECT * FROM users where users_username = ? ";
+        con.query(sql, [users_username], function (err, result){if (err) throw err;
+
+            if(result!="")
+            {
+                //have this username
+                res.send([{Alert:0}]); 
+                con.end();   
+            }
+            else{
+
+                sql = `INSERT INTO users(users_username,
+                    users_pass,
+                    users_fname,
+                    users_lname,
+                    users_adress,
+                    users_subarea,
+                    users_area,
+                    users_provice,
+                    users_phone,
+                    users_gender,
+                    users_status) 
+                VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)`;
+                con.query(sql, [users_username,
+                    users_pass,
+                    users_fname,
+                    users_lname,
+                    users_adress,
+                    users_subarea,
+                    users_area,
+                    users_provice,
+                    users_phone,
+                    users_gender,
+                    users_status], function (err, result){if (err) throw err;
+                    res.send([{Alert:1}]);   
+                    con.end();                           
+                });                        
+        
+            }                      
+        });
+   
+                           
+}
