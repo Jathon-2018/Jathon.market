@@ -92,21 +92,22 @@ exports.registermember = function (req, res)
     });
     
 
-    var users_username = req.body.username
-    var users_pass = req.body.password
-    var users_fname = req.body.firstname
-    var users_lname = req.body.lastname
-    var users_address = req.body.address
-    var users_subarea = req.body.district
-    var users_area = req.body.city
-    var users_provice = req.body.province
-    var users_phone = req.body.phone
-    var users_gender = req.body.sex
-    var users_status = 2
+    let users_username = req.body.username
+    let users_pass = req.body.password
+    let users_fname = req.body.firstname
+    let users_lname = req.body.lastname
+    let users_address = req.body.address
+    let users_subarea = req.body.district
+    let users_area = req.body.city
+    let users_provice = req.body.province
+    let users_phone = req.body.phone
+    let users_gender = req.body.sex
+    let users_status = 2
 
     sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status) 
         VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
-        con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){if (err) throw err;
+        con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){
+            if (err) throw err;
             res.send([{Alert:1}]);   
             con.end();                           
         });  
