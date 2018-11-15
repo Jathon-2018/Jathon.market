@@ -3,7 +3,7 @@
 var mysql = require('mysql');
 
 
-//ตรวจสอบการ Login 
+//-------ตรวจสอบการ Login----------
 exports.Login = function (req, res) 
 {  
     
@@ -55,3 +55,26 @@ exports.Login = function (req, res)
                                 
     });
 }
+
+//--------
+exports.doRegisterstore = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+    
+    var shipping_date = new Date();
+    
+    sql = `SELECT * FROM shipping JOIN store ON store_id = shipping_store_id WHERE shipping_date = ? `;
+        con.query(sql, [shipping_date], function (err, result){if (err) throw err;
+            console.log(result);
+            res.send(result);
+            con.end();                             
+    });
+     
+}
+
