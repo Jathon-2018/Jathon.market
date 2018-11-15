@@ -104,9 +104,9 @@ exports.registermember = function (req, res)
     var users_gender = req.body.sex
     var users_status = 2
 
-    sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_provice,users_phone,users_gender,users_status) 
+    sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status) 
         VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
-        con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_provice,users_phone,users_gender,users_status], function (err, result){if (err) throw err;
+        con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){if (err) throw err;
             res.send([{Alert:1}]);   
             con.end();                           
         });  
