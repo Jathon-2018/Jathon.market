@@ -20,7 +20,7 @@ exports.Login = function (req, res)
     //ตรวจสอบ username และ password 
     sql = "SELECT * FROM users where users_username = ? and users_pass = ?";
     con.query(sql, [users_username,users_password], function (err, result){
-    
+    if (err) throw err;
         if(result!="")
         {
             var users_id = result[0].users_id;
