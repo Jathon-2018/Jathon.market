@@ -57,7 +57,7 @@ exports.Login = function (req, res)
 }
 
 //--------
-exports.doRegisterstore = function (req, res) 
+exports.getShipping = function (req, res) 
 {  
     
 	var con = mysql.createConnection({
