@@ -53,7 +53,7 @@ app.get('/', function (req, res) {
 
   //---- Register member --------------------
   app.post('/registermember',function(req,res){
-    console.log(req)
+    console.log(req.body.username)
     appFuctions.registermember(req,res);
    
   });
