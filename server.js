@@ -59,10 +59,23 @@ app.get('/', function (req, res) {
    
   });
 
+  //---- Register store --------------------
+  app.post('/registerstore',function(req,res){
+    console.log(req.body.storename)
+    console.log(req.body.adress)
+    appFuctions.registerstore(req,res);
+  });
+
   //---- Get Data from store current date --------------------
   app.post('/getShipping',function(req,res){
     console.log(req.body.date)
     appFuctions.getShipping(req,res);
+   
+  });
+
+  //---- Get Type --------------------
+  app.post('/getType',function(req,res){
+    appFuctions.getType(req,res);
    
   });
 
