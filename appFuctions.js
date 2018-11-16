@@ -163,7 +163,7 @@ exports.getType = function (req, res)
     });
 
     sql = "SELECT * FROM type";
-    con.query(sql, [users_username,users_password], function (err, result){
+    con.query(sql, [], function (err, result){
     if (err) throw err;
         res.send(result);
         console.log(result);
