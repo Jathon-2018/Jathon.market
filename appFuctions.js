@@ -114,3 +114,60 @@ exports.registermember = function (req, res)
    
                            
 }
+
+//------- registerstore ----------
+// เพิ่มร้านค้า
+exports.registerstore = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+    
+
+    let store_name = req.body.storename
+    let store_owner = req.body.owner
+    let store_address = req.body.address
+    let store_subarea = req.body.district
+    let store_area = req.body.city
+    let store_provice = req.body.province
+    let store_postcode = req.body.province_id
+    let store_phone = req.body.phone
+    let store_img = req.body.store_picture
+    
+
+
+    sql = `INSERT INTO store(store_name,store_owner,store_address,store_subarea,store_area,store_provice,store_postcode,store_phone,store_img) 
+        VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
+        con.query(sql, [store_name,store_owner,store_address,store_subarea,store_area,store_provice,store_postcode,store_phone,store_img], function (err, result){
+            if (err) throw err;
+            res.send([{Alert:1}]);   
+            con.end();                           
+        });  
+   
+                           
+}
+
+//-------Get data from Type Table ----------
+exports.getType = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    sql = "SELECT * FROM type";
+    con.query(sql, [users_username,users_password], function (err, result){
+    if (err) throw err;
+        res.send(result);
+        console.log(result);
+        con.end();                       
+    });
+
+}
