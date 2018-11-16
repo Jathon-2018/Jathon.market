@@ -76,7 +76,6 @@ app.get('/', function (req, res) {
   //---- Get Type --------------------
   app.post('/getType',function(req,res){
     appFuctions.getType(req,res);
-   
   });
 
 
