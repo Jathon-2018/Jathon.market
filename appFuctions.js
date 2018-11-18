@@ -104,15 +104,30 @@ exports.registermember = function (req, res)
     let users_gender = req.body.sex
     let users_status = 2
 
-    sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status) 
-        VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
-        con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){
-            if (err) throw err;
-            res.send([{Alert:1}]);   
-            con.end();                           
-        });  
-   
-                           
+        sql = "SELECT * FROM users where users_username = ? ";
+        con.query(sql, [users_username], function (err, result){if (err) throw err;
+            if(result!="")
+            {
+                //have this username
+                res.send([{Alert:0}]); 
+                con.end();   
+            }
+            else{
+
+                sql = `INSERT INTO users(users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status) 
+                VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
+                con.query(sql, [users_username,users_pass,users_fname,users_lname,users_address,users_subarea,users_area,users_provice,users_phone,users_gender,users_status], function (err, result){
+                    if (err) throw err;
+                    res.send([{Alert:1}]);   
+                    con.end();                           
+                }); 
+
+            } 
+                                 
+        });
+
+            
+                   
 }
 
 //------- registerstore ----------
@@ -140,7 +155,7 @@ exports.registerstore = function (req, res)
     
 
 
-    sql = `INSERT INTO store(store_name,store_owner,store_address,store_subarea,store_area,store_provice,store_postcode,store_phone,store_img) 
+    sql = `INSERT INTO store(store_name,store_owner,store_adress,store_subarea,store_area,store_provice,store_postcode,store_phone,store_img) 
         VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? )`;
         con.query(sql, [store_name,store_owner,store_address,store_subarea,store_area,store_provice,store_postcode,store_phone,store_img], function (err, result){
             if (err) throw err;
@@ -168,6 +183,158 @@ exports.getType = function (req, res)
         res.send(result);
         console.log(result);
         con.end();                       
+    });
+
+}
+
+//-------Add product ----------
+exports.addproduct = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    let list_type  = req.body.product_type
+    let list_name = req.body.Product_Name
+    let list_price = req.body.price
+    let list_unit = req.body.unit
+    
+
+
+    sql = `INSERT INTO list(list_name,list_price,list_unit,list_type) 
+        VALUES( ? , ? , ? , ? )`;
+        con.query(sql, [list_name,list_price,list_unit,list_type], function (err, result){
+            if (err) throw err;
+            res.send([{Alert:1}]);   
+            con.end();                           
+        }); 
+
+}
+
+//-------Get data from store Table ----------
+exports.getstore = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    sql = "SELECT * FROM store";
+    con.query(sql, [], function (err, result){
+    if (err) throw err;
+    var list = result;
+    var database = 'data:image/jpeg;base64,'
+    var iarray = 0;
+    for (var i = 0; i < result.length; i++){
+        if(result[iarray].store_img !="" && result[iarray].store_img != undefined && result[iarray].store_img != null){
+            var dataImg = result[iarray].store_img ? result[iarray].store_img.toString() : null; 
+            list[iarray]["store_img"] = database + dataImg 
+            iarray++;
+        }
+        else{
+            list[iarray]["store_img"] = database + `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`; 
+            iarray++;
+        } 
+    } 
+    res.send(list);
+    con.end();                                             
+    });
+
+}
+
+
+//-------Get data from store Detail ----------
+exports.getstoredatail = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    let store_id = req.body.store_id
+
+    sql = "SELECT * FROM store WHERE store_id = ? ";
+    con.query(sql, [store_id], function (err, result){
+    if (err) throw err;
+    var list = result
+    if(result[0].store_img !="" && result[0].store_img != undefined && result[0].store_img != null){
+        var dataImg = result[0].store_img ? result[0].store_img.toString() : null;
+        list[0]["store_img"] = dataImg; 
+        res.send(list);
+        console.log(list);
+        con.end();
+    }
+    else{
+        list[0]["store_img"] = `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`; 
+        res.send(list);
+        con.end();
+    }                       
+    });
+
+}
+
+exports.deletestore = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+
+    let store_id = req.body.store_id
+
+        sql = 'DELETE FROM store where store_id = ?';
+        con.query(sql, [store_id], function (err, result){if (err) throw err;
+            res.send([{Alert:1}]);
+            con.end();    
+        });
+
+}
+
+exports.searchstorefromarea = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+
+    console.log(req.body.area);
+    var store_area = req.body.area
+    sql = `SELECT * FROM store WHERE store_area = ? `;
+    con.query(sql, [store_area], function (err, result){if (err) throw err;
+        var list = result;
+        var database = 'data:image/jpeg;base64,'
+        var iarray = 0;
+        for (var i = 0; i < result.length; i++){
+            if(result[iarray].store_img !="" && result[iarray].store_img != undefined && result[iarray].store_img != null){
+                var dataImg = result[iarray].store_img ? result[iarray].store_img.toString() : null; 
+                list[iarray]["store_img"] = database + dataImg 
+                iarray++;
+            }
+            else{
+                list[iarray]["store_img"] = database + `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`; 
+                iarray++;
+            } 
+        } 
+        res.send(list);
+        con.end();               
     });
 
 }
