@@ -26,16 +26,16 @@ app.use(function (req, res, next) {
 
 var port = process.env.PORT || 4000;
 //parse-------------------------
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
-//parse---------------------
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({
-// extended: true
+// 	extended: true
 // }));
+
+//parse---------------------
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+extended: true
+}));
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
@@ -62,7 +62,7 @@ app.get('/', function (req, res) {
   //---- Register store --------------------
   app.post('/registerstore',function(req,res){
     console.log(req.body.storename)
-    console.log(req.body.adress)
+    console.log(req.body.address)
     appFuctions.registerstore(req,res);
   });
 
@@ -74,9 +74,35 @@ app.get('/', function (req, res) {
   });
 
   //---- Get Type --------------------
-  app.post('/getType',function(req,res){
+  app.get('/getType',function(req,res){
     appFuctions.getType(req,res);
   });
+  
+  //---- Get store --------------------
+  app.get('/getstore',function(req,res){
+    appFuctions.getstore(req,res);
+  });
+
+  //---- Add product --------------------
+  app.post('/addproduct',function(req,res){
+    appFuctions.addproduct(req,res);
+  });
+
+  //---- Get data of store insied --------------------
+  app.post('/getstoredatail',function(req,res){
+    appFuctions.getstoredatail(req,res);
+  });
+  
+   //---- delete data of store insied --------------------
+   app.post('/deletestore',function(req,res){
+    appFuctions.deletestore(req,res);
+  });
+
+  //---- Search store From area --------------------
+  app.post('/searchstorefromarea',function(req,res){
+    appFuctions.searchstorefromarea(req,res);
+  });
+
 
 
 
@@ -84,10 +110,10 @@ app.get('/', function (req, res) {
 
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
-    app.listen(port,"0.0.0.0",function () {
-      console.log("Listening on Port "+port);
-    })
+    // app.listen(port,"0.0.0.0",function () {
+    //   console.log("Listening on Port "+port);
+    // })
   
-  // app.listen(4000, function () {
-  //   console.log('Runing 4000!')
-  // })
+  app.listen(4000, function () {
+    console.log('Runing 4000!')
+  })
