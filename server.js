@@ -98,6 +98,10 @@ app.get('/', function (req, res) {
     appFuctions.searchstorefromarea(req,res);
   });
 
+  //---- Get list --------------------
+  app.get('/getlist',function(req,res){
+    appFuctions.getlist(req,res);
+  });
 
 
 
