@@ -358,3 +358,47 @@ exports.getlist = function (req, res)
     });
 
 }
+
+//-------Get data from store Table ----------
+exports.updateToken = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var users_tokendevice = req.body.token
+    var users_id = req.body.users_id
+
+    sql = 'UPDATE users SET users_tokendevice = ? where users_id = ?';
+    con.query(sql, [token,users_id], function (err, result){
+    if (err) throw err;
+    res.send(result);
+    con.end();                                             
+    });
+
+}
+
+exports.searchstorefromlisttype = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+
+    console.log(req.body.area);
+    var list_type = req.body.list_type
+    sql = `SELECT * FROM list WHERE list_type = ? `;
+    con.query(sql, [store_area], function (err, result){if (err) throw err;
+        res.send(result);
+        con.end();               
+    });
+
+}
