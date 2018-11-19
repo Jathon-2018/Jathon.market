@@ -103,6 +103,16 @@ app.get('/', function (req, res) {
     appFuctions.getlist(req,res);
   });
 
+  //---- updateToken --------------------
+  app.post('/updateToken',function(req,res){
+    appFuctions.updateToken(req,res);
+  });
+
+  
+ //---- Search store From listtype --------------------
+ app.post('/searchstorefromlisttype',function(req,res){
+  appFuctions.searchstorefromlisttype(req,res);
+  });
 
 
 
