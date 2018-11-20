@@ -498,3 +498,25 @@ exports.getshippingtoadmin = function (req, res)
     });
 
 }
+
+exports.getshippinganddetail = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var shipping_id = req.body.shipping_id
+    console.log(shipping_id)
+
+    sql = "SELECT * FROM detail d JOIN list l ON d.detail_list_id = l.list_id WHERE d.detail_shipping_id = ? ";
+    con.query(sql, [shipping_id], function (err, result){
+    if (err) throw err;
+    res.send(result);
+    con.end();                                                                          
+    });
+
+}
