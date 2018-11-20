@@ -438,22 +438,25 @@ exports.shipping = function (req, res)
 
                 // insert detail and order_id
 
+                if(result[0].shipping_status == '1'){
+                    var detail = detaillist
+                    var iarray = 0;
+                    for (var i = 0; i < detail.length; i++){
+                        var amount = parseInt(detail[iarray].amount)
+                        var list_id = detail[iarray].list_id
+                        console.log(list_id)
+                            sql = `INSERT INTO detail(detail_name,detail_amount,detail_price,detail_shipping_id,detail_list_id) 
+                            VALUES( ? , ? , ? , ? , ? )`;
+                            con.query(sql, [detail[iarray].list_name,amount,detail[iarray].list_price,Neworders_id,list_id], function (err, result){
+                                if (err) throw err;
+                                console.log('สำเร็จ') 
+                            });
+                        iarray++;
+                    } 
+                }
+                else{
 
-                
-                var detail = detaillist
-                var iarray = 0;
-                for (var i = 0; i < detail.length; i++){
-                    var amount = parseInt(detail[iarray].amount)
-                    var list_id = detail[iarray].list_id
-                    console.log(list_id)
-                        sql = `INSERT INTO detail(detail_name,detail_amount,detail_price,detail_shipping_id,detail_list_id) 
-                        VALUES( ? , ? , ? , ? , ? )`;
-                        con.query(sql, [detail[iarray].list_name,amount,detail[iarray].list_price,Neworders_id,list_id], function (err, result){
-                            if (err) throw err;
-                            console.log('สำเร็จ') 
-                        });
-                    iarray++;
-                } 
+                }
                     res.send([{Alert:1}]);
                     con.end(); 
             }); 
