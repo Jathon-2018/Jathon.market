@@ -114,6 +114,10 @@ app.get('/', function (req, res) {
   appFuctions.searchstorefromlisttype(req,res);
   });
 
+  
+  app.post('/shipping',function(req,res){
+    appFuctions.shipping(req,res);
+    });
 
 
 
