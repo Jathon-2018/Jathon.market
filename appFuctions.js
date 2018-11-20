@@ -476,7 +476,7 @@ exports.getshippingtoadmin = function (req, res)
         database : process.env.DB_NAME
     });
 
-    sql = "SELECT * FROM shipping";
+    sql = "SELECT * FROM shipping ,store WHERE shipping_store_id = store_id";
     con.query(sql, [], function (err, result){
     if (err) throw err;
     res.send(result);
