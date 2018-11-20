@@ -396,9 +396,69 @@ exports.searchstorefromlisttype = function (req, res)
     console.log(req.body.area);
     var list_type = req.body.list_type
     sql = `SELECT * FROM list WHERE list_type = ? `;
-    con.query(sql, [store_area], function (err, result){if (err) throw err;
+    con.query(sql, [list_type], function (err, result){if (err) throw err;
         res.send(result);
         con.end();               
     });
 
+}
+
+exports.shipping = function (req, res) 
+{  
+    var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+      
+    var shipping_status = req.body.receiving
+    var shipping_note = req.body.shipping_note
+    var shipping_store_id = req.body.store_id
+    var shipping_users_id = req.body.users_id
+    var shipping_date = req.body.ship_date
+    //Select table menu
+
+    var detaillist = req.body.detail
+        //บันทึกรายละเอียดอาหารลง table
+        
+        
+    //เพิ่มใบสั่งรายการอาหาร
+        sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date) 
+        VALUES( ? , ? , ? , ? , ? )`;
+        con.query(sql, [shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date], function (err, result){
+            if (err) throw err;
+            //เลือก ใบสั่งอาหารจาก user_id & store_id ที่เวลาล่า
+
+            sql = `SELECT * FROM shipping WHERE shipping_date = (SELECT MAX(shipping_date) FROM shipping WHERE shipping_store_id = ? and shipping_users_id = ?) `;
+            con.query(sql, [shipping_store_id,shipping_users_id], function (err, result){
+                if (err) throw err;
+                var Neworders_id = result[0].shipping_id 
+                console.log(Neworders_id)   
+
+                // insert detail and order_id
+
+
+                
+                var detail = detaillist
+                var iarray = 0;
+                for (var i = 0; i < detail.length; i++){
+                    var amount = parseInt(detail[iarray].amount)
+                    var list_id = detail[iarray].list_id
+                    console.log(list_id)
+                        sql = `INSERT INTO detail(detail_name,detail_amount,detail_price,detail_shipping_id,detail_list_id) 
+                        VALUES( ? , ? , ? , ? , ? )`;
+                        con.query(sql, [detail[iarray].list_name,amount,detail[iarray].list_price,Neworders_id,list_id], function (err, result){
+                            if (err) throw err;
+                            console.log('สำเร็จ') 
+                        });
+                    iarray++;
+                } 
+                    res.send([{Alert:1}]);
+                    con.end(); 
+            }); 
+        });
+        
+        
+        
 }
