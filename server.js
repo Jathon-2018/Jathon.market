@@ -124,7 +124,11 @@ app.get('/', function (req, res) {
     appFuctions.getshippingtoadmin(req,res);
   });
 
-
+  
+  //---- Get getshippinganddetail --------------------
+  app.post('/getshippinganddetail',function(req,res){
+    appFuctions.getshippinganddetail(req,res);
+  });
 
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
