@@ -117,7 +117,12 @@ app.get('/', function (req, res) {
   
   app.post('/shipping',function(req,res){
     appFuctions.shipping(req,res);
-    });
+  });
+
+  //---- Get shippingtoadmin --------------------
+  app.get('/getshippingtoadmin',function(req,res){
+    appFuctions.getshippingtoadmin(req,res);
+  });
 
 
 
