@@ -520,3 +520,23 @@ exports.getshippinganddetail = function (req, res)
     });
 
 }
+
+exports.getshippingtoadmin = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    sql = "SELECT * FROM shipping group by shipping_date ";
+    con.query(sql, [], function (err, result){
+    if (err) throw err;
+    var list = result;
+    res.send(list);
+    con.end();                                                                          
+    });
+
+}
