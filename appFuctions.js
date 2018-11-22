@@ -521,7 +521,7 @@ exports.getshippinganddetail = function (req, res)
 
 }
 
-exports.getshippingtoadmin = function (req, res) 
+exports.getdateshippingtoadmin = function (req, res) 
 {  
     
 	var con = mysql.createConnection({
