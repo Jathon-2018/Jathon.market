@@ -90,7 +90,8 @@ app.get('/', function (req, res) {
   
    //---- delete data of store insied --------------------
    app.post('/deletestore',function(req,res){
-     console.log(store_id)
+     
+     console.log(req.body.store_id)
     appFuctions.deletestore(req,res);
   });
 
