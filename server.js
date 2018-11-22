@@ -137,7 +137,7 @@ app.get('/', function (req, res) {
   });
 
   //---- Get date shipping for Admin --------------------
-  app.get('/getdateshippingforadmin',function(req,res){
+  app.post('/getdateshippingforadmin',function(req,res){
     appFuctions.getdateshippingforadmin(req,res);
   });
 
