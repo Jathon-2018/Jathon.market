@@ -294,9 +294,9 @@ exports.deletestore = function (req, res)
     });
 
 
-    let store_id = req.body.store_id
+    var store_id = req.body.store_id
 
-        sql = 'DELETE FROM store where store_id = ?';
+        sql = 'DELETE FROM store WHERE store_id = ?';
         con.query(sql, [store_id], function (err, result){if (err) throw err;
             res.send([{Alert:1}]);
             con.end();    
