@@ -540,3 +540,26 @@ exports.getdateshippingtoadmin = function (req, res)
     });
 
 }
+
+exports.getdateshippingforadmin = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var date = req.body.shipping_date
+
+    sql = "SELECT * FROM shipping WHERE shipping_date = ? ";
+    con.query(sql, [date], function (err, result){
+    if (err) throw err;
+    var list = result;
+    res.send(list);
+    con.end();                                                                          
+    });
+
+}
+
