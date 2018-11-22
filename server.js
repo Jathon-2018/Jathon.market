@@ -136,6 +136,11 @@ app.get('/', function (req, res) {
     appFuctions.getdateshippingtoadmin(req,res);
   });
 
+  //---- Get date shipping for Admin --------------------
+  app.get('/getdateshippingforadmin',function(req,res){
+    appFuctions.getdateshippingforadmin(req,res);
+  });
+
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
     app.listen(port,"0.0.0.0",function () {
