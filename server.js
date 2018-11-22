@@ -90,7 +90,6 @@ app.get('/', function (req, res) {
   
    //---- delete data of store insied --------------------
    app.post('/deletestore',function(req,res){
-     
      console.log(req.body.store_id)
     appFuctions.deletestore(req,res);
   });
@@ -130,6 +129,11 @@ app.get('/', function (req, res) {
   //---- Get getshippinganddetail --------------------
   app.post('/getshippinganddetail',function(req,res){
     appFuctions.getshippinganddetail(req,res);
+  });
+
+  //---- Get dateshippingtoadmin --------------------
+  app.get('/getdateshippingtoadmin',function(req,res){
+    appFuctions.getdateshippingtoadmin(req,res);
   });
 
 // ------------------------------------ connect port ---------------------------------
