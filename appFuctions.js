@@ -426,7 +426,7 @@ exports.shipping = function (req, res)
         
     //เพิ่มใบสั่งรายการอาหาร
         sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check) 
-        VALUES( ? , ? , ? , ? , ? )`;
+        VALUES( ? , ? , ? , ? , ? , ?)`;
         con.query(sql, [shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check], function (err, result){
             if (err) throw err;
             //เลือก ใบสั่งอาหารจาก user_id & store_id ที่เวลาล่า
