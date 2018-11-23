@@ -317,7 +317,8 @@ exports.searchstorefromarea = function (req, res)
 
     console.log(req.body.area);
     var store_area = req.body.area
-    sql = `SELECT * FROM store WHERE store_area = ? `;
+    
+    sql = `SELECT * FROM store,shipping  WHERE store_area = ?  and shipping_store_id = store_id`;
     con.query(sql, [store_area], function (err, result){if (err) throw err;
         var list = result;
         var database = 'data:image/jpeg;base64,'
