@@ -418,19 +418,20 @@ exports.shipping = function (req, res)
     var shipping_users_id = req.body.users_id
     var shipping_date = req.body.ship_date
     //Select table menu
+    var shipping_date_check = new Date();
 
     var detaillist = req.body.detail
         //บันทึกรายละเอียดอาหารลง table
         
         
     //เพิ่มใบสั่งรายการอาหาร
-        sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date) 
+        sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check) 
         VALUES( ? , ? , ? , ? , ? )`;
-        con.query(sql, [shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date], function (err, result){
+        con.query(sql, [shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check], function (err, result){
             if (err) throw err;
             //เลือก ใบสั่งอาหารจาก user_id & store_id ที่เวลาล่า
 
-            sql = `SELECT * FROM shipping WHERE shipping_date = (SELECT MAX(shipping_date) FROM shipping WHERE shipping_store_id = ? and shipping_users_id = ?) `;
+            sql = `SELECT * FROM shipping WHERE shipping_date_check = (SELECT MAX(shipping_date) FROM shipping WHERE shipping_store_id = ? and shipping_users_id = ?) `;
             con.query(sql, [shipping_store_id,shipping_users_id], function (err, result){
                 if (err) throw err;
                 var Neworders_id = result[0].shipping_id 
