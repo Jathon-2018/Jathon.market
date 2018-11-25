@@ -142,6 +142,11 @@ app.get('/', function (req, res) {
     appFuctions.getdateshippingforadmin(req,res);
   });
 
+//---- Search store From area --------------------
+app.post('/searchstorearea',function(req,res){
+  appFuctions.searchstorearea(req,res);
+});
+
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
     app.listen(port,"0.0.0.0",function () {
