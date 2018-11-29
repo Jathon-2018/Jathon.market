@@ -107,6 +107,7 @@ app.get('/', function (req, res) {
 
   //---- updateToken --------------------
   app.post('/updateToken',function(req,res){
+    console.log(req.body.token)
     appFuctions.updateToken(req,res);
   });
 
