@@ -3,8 +3,8 @@ var gcm = require('node-gcm');
 // Set up the sender with your GCM/FCM API key (declare this once for multiple messages)
 var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
 var message = new gcm.Message();
-message.addData('title','เทพขลุ่ย'); 
-message.addData('message','ทดสอบส่งแจ้งเตือน'); 
+message.addData('title','Test'); 
+message.addData('message','Only files notifications'); 
 message.addData('content-available',true); 
 // Prepare a message to be sent
 
