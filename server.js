@@ -153,7 +153,7 @@ app.get('/getAdmin',function(req,res){
 });
 
 //---- Send message --------------------
-app.get('/sendMessage',function(req,res){
+app.post('/sendMessage',function(req,res){
   appFuctions.sendMessage(req,res);
 });
 
