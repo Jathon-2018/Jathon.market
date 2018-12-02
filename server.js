@@ -152,6 +152,11 @@ app.get('/getAdmin',function(req,res){
   appFuctions.getAdmin(req,res);
 });
 
+//---- Send message --------------------
+app.get('/sendMessage',function(req,res){
+  appFuctions.sendMessage(req,res);
+});
+
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
     app.listen(port,"0.0.0.0",function () {
