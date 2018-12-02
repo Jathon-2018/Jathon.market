@@ -10,10 +10,8 @@ message.addData('content-available',true);
 
  
 // Specify which registration IDs to deliver the message to
-  var regTokens = ["eJ1nw8RsTz8:APA91bF6o2lg6Svtf6ai8nZs5bz3zQX9bDuCZi93MVYlP4AyWyC_TZjSp_2T8eJN_L1v7fj0UPkR1KaU82SwkTrbZBg25r2JB3pdM1NIXaTRZAAfT4vr6ZbInNlphbACmpGep_sa5oaY"];
- 
+  var regTokens = ["dafjtZM4udM:APA91bFKhvc17Fvyc0bXpGd9eBjTZ6AErPnA5z1NtHvWFWOVO0-UhEC__fd_xoe9nidCXZvigbA8gUYaY6wVSo6M_F_vAeHheHwz5peDhLm3SlgbU_F9fyaEDU4hAQEak8wiqDOoqZLQ"];
 
-  
   sender.send(message, {registrationTokens : regTokens}, function (err, response ){
     if(err) console.error(err);
     else console.log(response);
