@@ -147,6 +147,11 @@ app.post('/searchstorearea',function(req,res){
   appFuctions.searchstorearea(req,res);
 });
 
+//---- Get users Admin --------------------
+app.get('/getAdmin',function(req,res){
+  appFuctions.getAdmin(req,res);
+});
+
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
     app.listen(port,"0.0.0.0",function () {

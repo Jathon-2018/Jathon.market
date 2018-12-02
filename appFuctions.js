@@ -600,3 +600,23 @@ exports.searchstorearea = function (req, res)
     });
 
 }
+
+//-------Get Admin ----------
+exports.getAdmin = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    sql = "SELECT * FROM users WHERE users_status = 1";
+    con.query(sql, [], function (err, result){
+    if (err) throw err;
+    res.send(result);
+    con.end();                                             
+    });
+
+}
