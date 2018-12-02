@@ -624,12 +624,12 @@ exports.getAdmin = function (req, res)
 exports.sendMessage = function (req, res) 
 {  
     
-	var con = mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database : process.env.DB_NAME
-    });
+	// var con = mysql.createConnection({
+    //     host: process.env.DB_HOST,
+    //     user: process.env.DB_USER,
+    //     password: process.env.DB_PASSWORD,
+    //     database : process.env.DB_NAME
+    // });
 
     var gcm = require('node-gcm');
 
@@ -654,5 +654,7 @@ exports.sendMessage = function (req, res)
         if(err) console.error(err);
         else console.log(response);
       });
+
+      res.send([{Alert:1}]);
 
 }
