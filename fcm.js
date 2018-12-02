@@ -16,11 +16,7 @@ var regTokens = ['eJ1nw8RsTz8:APA91bF6o2lg6Svtf6ai8nZs5bz3zQX9bDuCZi93MVYlP4AyWy
  
 
   
-  sender.send(message, {registrationIds: [token]}, (err) => {
-    if (err) {
-      console.error(err);
-    }
-    else {
-      console.log('Sent');
-    }
+  sender.send(message, {registrationTokens : regTokens}, function (err, response ){
+    if(err) console.error(err);
+    else console.log(response);
   });
