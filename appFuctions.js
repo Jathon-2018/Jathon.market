@@ -621,7 +621,7 @@ exports.getAdmin = function (req, res)
 
 }
 
-exports.sendMessage = function (req, res) 
+exports.sendMessage = function (req, res , next) 
 {  
     
 	// var con = mysql.createConnection({
@@ -655,6 +655,6 @@ exports.sendMessage = function (req, res)
         else console.log(response);
       });
 
-      res.send([{Alert:1}]);
+      
 
 }
