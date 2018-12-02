@@ -375,7 +375,7 @@ exports.updateToken = function (req, res)
     var users_id = req.body.users_id
 
     sql = 'UPDATE users SET users_tokendevice = ? where users_id = ?';
-    con.query(sql, [token,users_id], function (err, result){
+    con.query(sql, [users_tokendevice,users_id], function (err, result){
     if (err) throw err;
     res.send(result);
     con.end();                                             
