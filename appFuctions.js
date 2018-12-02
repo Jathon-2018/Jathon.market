@@ -650,9 +650,9 @@ exports.sendMessage = function (req, res)
     let tokens = []
     tokens.push(regTokens)
       
-      sender.send(message, {registrationTokens : tokens}, function (err, response ){
+      sender.send(message, {registrationTokens : tokens}, function (err, result){
         if(err) console.error(err);
-        else console.log(response);
+        else console.log(result);
       });
 
       res.send([{Alert:1}]);
