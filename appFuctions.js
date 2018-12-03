@@ -630,9 +630,9 @@ exports.sendMessage = function (req, res) {
   var gcm = require('node-gcm');
 
   var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
-  let store_name = req.messageData.store_name;
-  let statusSend = req.messageData.statusSend;
-  let datatoken = req.messageData.datatoken;
+  let store_name = req.body.store_name;
+  let statusSend = req.body.statusSend;
+  let datatoken = req.body.datatoken;
 
   console.log(store_name, statusSend,datatoken);
   
@@ -649,11 +649,15 @@ exports.sendMessage = function (req, res) {
       message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 
       sender.send(message, { registrationTokens: tokens }, (err, response) => {
-        if(err) console.error(err);
-        else console.log(response);
+        if (err) {
+            console.log(err);
+            res.send({ ok: false, error: err });
+          } else {
+            console.log(response);
+            res.send({ ok: true });
+          }
         
       });
 
-      res.send({ ok: true });
       
 }
