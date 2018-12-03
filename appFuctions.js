@@ -650,12 +650,12 @@ exports.sendMessage = function (req, res) {
 
       sender.send(message, { registrationTokens: tokens }, (err, response) => {
         if (err) {
-            console.log(err);
-            res.send({ ok: false, error: err });
-          } else {
-            console.log(response);
-            res.send({ ok: true });
-          }
+          console.log(err);
+          res.send({ ok: false, error: err });
+        } else {
+          console.log(response);
+          res.send({ ok: true });
+        }
         
       });
 

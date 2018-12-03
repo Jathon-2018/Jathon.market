@@ -86,6 +86,14 @@ app.get('/', function (req, res) {
 
 //   res.send('Token True')
 // })
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 
 
@@ -229,12 +237,4 @@ app.get('/getAdmin',function(req,res){
   //   next(err);
   // });
 
-  app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    // res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  });
+
