@@ -5,6 +5,8 @@ var mysql = require('mysql');
 var appFuctions = require('./appFuctions.js');
 var express = require('express');
 // var express = require('express');
+
+var index = require('./routes/index');
 var fcm = require('./routes/fcm');
 
 
@@ -39,6 +41,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 extended: true
 }));
+
+app.use('/', index);
 app.use('/fcm', fcm);
 
 app.get('/', function (req, res) {
