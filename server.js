@@ -12,9 +12,6 @@ var appFuctions = require('./appFuctions.js');
 var fcm = require('./routes/fcm');
 
 
-var Callapp = express();
-
-
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -35,7 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-Callapp.use('/fcm', fcm);
+
 var port = process.env.PORT || 4000;
 
 //parse---------------------
@@ -43,6 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 extended: true
 }));
+app.use('/fcm', fcm);
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
