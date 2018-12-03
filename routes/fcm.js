@@ -3,9 +3,10 @@ var router = express.Router();
 
 var gcm = require('node-gcm');
 
+
 //========== FCM =============
 
-router.post('/sendMessage', function (req, res, next) {
+router.post('/sendMessage', function (req, res) {
   let store_name = req.messageData.store_name;
   let statusSend = req.messageData.statusSend;
   let datatoken = req.messageData.datatoken;
