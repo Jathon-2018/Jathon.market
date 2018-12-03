@@ -1,8 +1,19 @@
+
+
+
 var app = require('express')();
 var bodyParser = require('body-parser');
 require('dotenv').config();
 var mysql = require('mysql');
 var appFuctions = require('./appFuctions.js');
+
+
+// var express = require('express');
+var fcm = require('./routes/fcm');
+
+
+
+
 
 app.use(function (req, res, next) {
 
@@ -37,6 +48,8 @@ app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
   console.log("homeStart")
 })
+
+app.use('/fcm', fcm);
 
 // ------------------------------------ Req appFuctions-------------------------------
 
@@ -152,10 +165,10 @@ app.get('/getAdmin',function(req,res){
   appFuctions.getAdmin(req,res);
 });
 
-//---- Send message --------------------
-app.post('/sendMessage',function(req,res){
-  appFuctions.sendMessage(req,res);
-});
+// //---- Send message --------------------
+// app.post('/sendMessage',function(req,res){
+//   appFuctions.sendMessage(req,res);
+// });
 
 // ------------------------------------ connect port ---------------------------------
 // port connect server 

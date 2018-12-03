@@ -621,60 +621,10 @@ exports.getAdmin = function (req, res)
 
 }
 
-exports.sendMessage = function (req, res) 
-{  
+// exports.sendMessage = function (req, res) 
+// {  
     
-	// var con = mysql.createConnection({
-    //     host: process.env.DB_HOST,
-    //     user: process.env.DB_USER,
-    //     password: process.env.DB_PASSWORD,
-    //     database : process.env.DB_NAME
-    // });
-
-    // var gcm = require('node-gcm');
-
-    
- 
-    // // Set up the sender with your GCM/FCM API key (declare this once for multiple messages)
-    // var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
-    // var message = new gcm.Message();
-    // message.addData('title','เทพขลุ่ย'); 
-    // message.addData('message','ทดสอบส่งแจ้งเตือน'); 
-    // message.addData('content-available',true); 
-    // // Prepare a message to be sent
-    
-     
-    // // Specify which registration IDs to deliver the message to
-    //   var regTokens = ["eJ1nw8RsTz8:APA91bF6o2lg6Svtf6ai8nZs5bz3zQX9bDuCZi93MVYlP4AyWyC_TZjSp_2T8eJN_L1v7fj0UPkR1KaU82SwkTrbZBg25r2JB3pdM1NIXaTRZAAfT4vr6ZbInNlphbACmpGep_sa5oaY"];
-    
-    // let tokens = []
-    // tokens.push(regTokens)
-      
-    //   sender.send(message, {registrationTokens : tokens}, function (err, response ){
-    //     if(err) console.error(err);
-    //     else console.log(response);
-    //   });
-
-    var gcm = require('node-gcm');
-    var store_name = req.body.store_name
-    // Set up the sender with your GCM/FCM API key (declare this once for multiple messages)
-    var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
-    var message = new gcm.Message();
-    message.addData('title','ร้าน',store_name); 
-    message.addData('message','notifications'); 
-    message.addData('content-available',true); 
-    // Prepare a message to be sent
-
-    
-    // Specify which registration IDs to deliver the message to
-    var regTokens = ["dafjtZM4udM:APA91bFKhvc17Fvyc0bXpGd9eBjTZ6AErPnA5z1NtHvWFWOVO0-UhEC__fd_xoe9nidCXZvigbA8gUYaY6wVSo6M_F_vAeHheHwz5peDhLm3SlgbU_F9fyaEDU4hAQEak8wiqDOoqZLQ"];
-
-    sender.send(message, {registrationTokens : regTokens}, function (err, response ){
-        if(err) console.error(err);
-        else console.log(response);
-        res.send(response);
-    });
 
     
       
-}
+// }
