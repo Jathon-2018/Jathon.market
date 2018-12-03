@@ -637,7 +637,7 @@ exports.sendMessage = function (req, res) {
   console.log(store_name, statusSend,datatoken);
   
       let tokens = [];
-      tokens.push(datatoken[0]);
+      tokens.push(datatoken);
       console.log('dataToken',tokens);
       let message = new gcm.Message();
       message.addData('title', 'ร้าน', store_name);
@@ -650,6 +650,7 @@ exports.sendMessage = function (req, res) {
         if(err) console.error(err);
         else console.log(response);
       });
+      res.send({ ok: true });
 
       
 }
