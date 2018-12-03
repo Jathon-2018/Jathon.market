@@ -635,9 +635,15 @@ exports.sendMessage = function (req, res) {
   let datatoken = req.body.datatoken;
 
   console.log(store_name, statusSend,datatoken);
-  
-      let tokens = [];
-      tokens.push(datatoken);
+  var regTokens = ["cNYLw6ISCa0:APA91bGRd8R91gOn3hwLzY5K86N2HZ9F10s_BTOWzYGgKDHNX3sgKauV0SADbRGiZMfY4vAT0Uuztq6LGR_7xOuxkyJHSoDGbxSJZMrURm1L7SCdGUcp7vX1gr1AXvI_XpuosR10zK_x"];
+
+
+  let tokens = [];
+  tokens.push(regTokens[0]);
+
+
+    //   let tokens = [];
+    //   tokens.push(datatoken);
       console.log('dataToken',tokens);
       let message = new gcm.Message();
       message.addData('title', 'ร้าน', store_name);
