@@ -3,8 +3,7 @@ var bodyParser = require('body-parser');
 require('dotenv').config();
 var mysql = require('mysql');
 var appFuctions = require('./appFuctions.js');
-
-
+var express = require('express');
 // var express = require('express');
 var fcm = require('./routes/fcm');
 
@@ -40,13 +39,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 extended: true
 }));
+app.use('/fcm', fcm);
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
   console.log("homeStart")
 })
 
-app.use('/fcm', fcm);
+
 
 // ------------------------------------ Req appFuctions-------------------------------
 
@@ -176,3 +176,5 @@ app.get('/getAdmin',function(req,res){
   // app.listen(4000, function () {
   //   console.log('Runing 4000!')
   // })
+
+module.exports = app;
