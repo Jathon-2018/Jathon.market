@@ -15,7 +15,7 @@ message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 
 
   let tokens = [];
-  tokens.push(regTokens);
+  tokens.push(regTokens[0]);
   sender.send(message, {registrationTokens : tokens}, function (err, response ){
     if(err) console.error(err);
     else console.log(response);

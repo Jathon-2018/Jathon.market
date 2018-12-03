@@ -637,7 +637,7 @@ exports.sendMessage = function (req, res) {
   console.log(store_name, statusSend,datatoken);
   
       let tokens = [];
-      tokens.push(datatoken);
+      tokens.push(datatoken[0]);
       console.log('dataToken',tokens);
       let message = new gcm.Message();
       message.addData('title', 'ร้าน', store_name);
@@ -646,7 +646,7 @@ exports.sendMessage = function (req, res) {
     //   message.addData('data', { "username": "Satit", "message": "Hello world" });
       message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 
-      sender.send(message, { registrationTokens: datatoken }, (err, response) => {
+      sender.send(message, { registrationTokens: tokens }, (err, response) => {
         if(err) console.error(err);
         else console.log(response);
       });
