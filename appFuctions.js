@@ -646,8 +646,8 @@ exports.sendMessage = function (req, res) {
     //   tokens.push(datatoken);
       console.log('dataToken',tokens);
       let message = new gcm.Message();
-      message.addData('title', 'ร้าน', store_name);
-      message.addData('message', statusSend);
+      message.addData('title', 'ส่งเพื่อทดสอบ');
+      message.addData('message', 'ส่งเพื่อทดสอบ');
       message.addData('content-available', true);
     //   message.addData('data', { "username": "Satit", "message": "Hello world" });
       message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
