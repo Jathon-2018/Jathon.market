@@ -12,11 +12,14 @@ var appFuctions = require('./appFuctions.js');
 var fcm = require('./routes/fcm');
 
 
+
+
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
-    // res.setHeader('Access-Control-Allow-Origin', '*');
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -40,14 +43,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 extended: true
 }));
-app.use('/fcm');
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
   console.log("homeStart")
 })
 
-
+app.use('/fcm', fcm);
 
 // ------------------------------------ Req appFuctions-------------------------------
 
