@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 extended: true
 }));
-app.use('/fcm', fcm);
+app.use('/fcm');
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
