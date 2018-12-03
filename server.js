@@ -12,7 +12,7 @@ var appFuctions = require('./appFuctions.js');
 var fcm = require('./routes/fcm');
 
 
-
+var Callapp = express();
 
 
 app.use(function (req, res, next) {
@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/fcm', fcm);
+Callapp.use('/fcm', fcm);
 var port = process.env.PORT || 4000;
 
 //parse---------------------
