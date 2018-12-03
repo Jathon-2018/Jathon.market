@@ -650,15 +650,11 @@ exports.sendMessage = function (req, res) {
       let sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
 
       sender.send(message, { registrationTokens: tokens }, (err, response) => {
-        if (err) {
-          console.log(err);
-          res.send({ ok: false, error: err });
-        } else {
-          console.log(response);
-          res.send({ ok: true });
-        }
+        if(err) console.error(err);
+        else console.log(response);
+        
       });
 
-    
+      res.send({ ok: true });
       
 }
