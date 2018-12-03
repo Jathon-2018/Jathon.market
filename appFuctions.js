@@ -2,6 +2,8 @@
 
 var mysql = require('mysql');
 
+var gcm = require('node-gcm');
+
 
 //-------ตรวจสอบการ Login----------
 exports.Login = function (req, res) 
@@ -624,6 +626,9 @@ exports.getAdmin = function (req, res)
 //========== FCM =============
 
 exports.sendMessage = function (req, res) {
+
+
+    
   let store_name = req.messageData.store_name;
   let statusSend = req.messageData.statusSend;
   let datatoken = req.messageData.datatoken;
