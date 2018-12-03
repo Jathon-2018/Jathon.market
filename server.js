@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-
+app.use('/fcm', fcm);
 var port = process.env.PORT || 4000;
 
 //parse---------------------
@@ -49,7 +49,7 @@ app.get('/', function (req, res) {
   console.log("homeStart")
 })
 
-app.use('/fcm', fcm);
+
 
 // ------------------------------------ Req appFuctions-------------------------------
 
