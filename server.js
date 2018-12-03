@@ -166,10 +166,10 @@ app.get('/getAdmin',function(req,res){
   appFuctions.getAdmin(req,res);
 });
 
-// //---- Send message --------------------
-// app.post('/sendMessage',function(req,res){
-//   appFuctions.sendMessage(req,res);
-// });
+//---- Send message --------------------
+app.post('/sendMessage',function(req,res){
+  appFuctions.sendMessage(req,res);
+});
 
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
