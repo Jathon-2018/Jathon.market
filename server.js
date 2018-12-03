@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var fcm = require('./routes/fcm');
 
 
-
+var appcall = express();
 
 
 app.use(function (req, res, next) {
@@ -42,8 +42,8 @@ app.use(bodyParser.urlencoded({
 extended: true
 }));
 
-app.use('/', index);
-app.use('/fcm', fcm);
+appcall.use('/', index);
+appcall.use('/fcm', fcm);
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
@@ -181,12 +181,12 @@ app.get('/getAdmin',function(req,res){
   //   console.log('Runing 4000!')
   // })
 
-  // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-  });
+  // // catch 404 and forward to error handler
+  // app.use(function(req, res, next) {
+  //   var err = new Error('Not Found');
+  //   err.status = 404;
+  //   next(err);
+  // });
 
   app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -197,5 +197,3 @@ app.get('/getAdmin',function(req,res){
     res.status(err.status || 500);
     res.render('error');
   });
-  
-module.exports = app;
