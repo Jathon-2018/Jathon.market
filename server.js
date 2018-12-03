@@ -167,9 +167,9 @@ app.get('/getAdmin',function(req,res){
 });
 
 //---- Send message --------------------
-app.post('/sendMessage',function(req,res){
-  appFuctions.sendMessage(req,res);
-});
+// app.post('/sendMessage',function(req,res){
+//   appFuctions.sendMessage(req,res);
+// });
 
 // ------------------------------------ connect port ---------------------------------
 // port connect server 
