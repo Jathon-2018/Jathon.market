@@ -637,7 +637,7 @@ exports.sendMessage = function (req, res) {
   console.log(store_name, statusSend,datatoken);
   
       let tokens = [];
-      tokens.push(datatoken[0]);
+      tokens.push(datatoken);
       console.log('dataToken',tokens);
       let message = new gcm.Message();
       message.addData('title', 'ร้าน', store_name);
