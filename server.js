@@ -10,8 +10,6 @@ var index = require('./routes/index');
 var fcm = require('./routes/fcm');
 
 
-var appcall = express();
-
 
 app.use(function (req, res, next) {
 
@@ -42,8 +40,8 @@ app.use(bodyParser.urlencoded({
 extended: true
 }));
 
-appcall.use('/', index);
-appcall.use('/fcm', fcm);
+app.use('/', index);
+app.use('/fcm', fcm);
 
 app.get('/', function (req, res) {
   res.send('!!!!!!!!!')
@@ -93,6 +91,10 @@ app.get('/', function (req, res) {
 
 // ------------------------------------ Req appFuctions-------------------------------
 
+  //---- เข้าสู่ระบบ --------------------
+  app.post('/sendMessage',function(req,res){
+    appFuctions.sendMessage(req,res);
+  });
   //---- เข้าสู่ระบบ --------------------
   app.post('/Login',function(req,res){
     console.log(req.body.username)
