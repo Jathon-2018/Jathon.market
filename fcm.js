@@ -13,7 +13,10 @@ message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 // Specify which registration IDs to deliver the message to
   var regTokens = ["cNYLw6ISCa0:APA91bGRd8R91gOn3hwLzY5K86N2HZ9F10s_BTOWzYGgKDHNX3sgKauV0SADbRGiZMfY4vAT0Uuztq6LGR_7xOuxkyJHSoDGbxSJZMrURm1L7SCdGUcp7vX1gr1AXvI_XpuosR10zK_x"];
 
-  sender.send(message, {registrationTokens : regTokens}, function (err, response ){
+
+  let tokens = [];
+  tokens.push(regTokens);
+  sender.send(message, {registrationTokens : tokens}, function (err, response ){
     if(err) console.error(err);
     else console.log(response);
   });

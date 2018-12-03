@@ -646,7 +646,7 @@ exports.sendMessage = function (req, res) {
     //   message.addData('data', { "username": "Satit", "message": "Hello world" });
       message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 
-      sender.send(message, { registrationTokens: tokens }, (err, response) => {
+      sender.send(message, { registrationTokens: datatoken }, (err, response) => {
         if(err) console.error(err);
         else console.log(response);
       });
