@@ -432,7 +432,7 @@ exports.shipping = function (req, res)
         tokenDevice = req.body.datatoken
 
     console.log(store_name, statusSend, tokenDevice);
-        
+    notifications.sendMessage(store_name,statusSend,tokenDevice);    
         
     //เพิ่มใบสั่งรายการอาหาร
         sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check) 
@@ -468,7 +468,7 @@ exports.shipping = function (req, res)
                 else{
 
                 }
-                    notifications.sendMessage(store_name,statusSend,tokenDevice);
+                    
                     res.send([{Alert:1}]);
                     con.end(); 
             }); 
