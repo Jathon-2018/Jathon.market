@@ -13,10 +13,22 @@ exports.sendMessage = function(store_name,statusSend,tokenDevice){
 	});
 
     var message = new gcm.Message();
-    message.addData('title','ร้าน',store_name); 
-    message.addData('message','สถานะการรับของ',statusSend); 
+    message.addData('title','ร้าน'+ store_name); 
+    message.addData('message','สถานะการรับของ :'+ statusSend); 
     message.addData('content-available',true); 
     message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
+    // if(statusSend == 'รับ'){
+    //     message.addData('title','แจ้งเตือน'); 
+    //     message.addData('message','สถานะการรับของ : มีการรับสินค้า'); 
+    //     message.addData('content-available',true); 
+    //     message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
+    // }
+    // else{
+    //     message.addData('title','แจ้งเตือน'); 
+    //     message.addData('message','สถานะการรับของ : ไม่รับสินค้า'); 
+    //     message.addData('content-available',true); 
+    //     message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
+    // }
 			
 			var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
             // let store_name = req.body.store_name;
