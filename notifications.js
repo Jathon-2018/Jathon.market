@@ -36,7 +36,7 @@ exports.sendMessage = function(req , res){
     		if(err) console.error(err);
     		else 	console.log(response); 
             console.log("sandmassage complete");
-            res.send(result);
+            res.send(response);
     		con.end();
 			});
 		

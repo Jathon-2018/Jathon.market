@@ -63,10 +63,7 @@ app.get('/', function (req, res) {
 
 // ------------------------------------ Req appFuctions-------------------------------
 
-  //---- แจ้งเตือน --------------------
-  app.post('/sendMessage',function(req,res){
-    notifications.sendMessage(req,res);
-  });
+  
   //---- เข้าสู่ระบบ --------------------
   app.post('/Login',function(req,res){
     console.log(req.body.username)
@@ -147,7 +144,10 @@ app.get('/', function (req, res) {
   app.post('/shipping',function(req,res){
     appFuctions.shipping(req,res);
   });
-
+//---- แจ้งเตือน --------------------
+  app.post('/sendMessage',function(req,res){
+    notifications.sendMessage(req,res);
+  });
   //---- Get shippingtoadmin --------------------
   app.get('/getshippingtoadmin',function(req,res){
     appFuctions.getshippingtoadmin(req,res);
