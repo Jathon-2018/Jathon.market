@@ -465,10 +465,6 @@ exports.shipping = function (req, res)
                         iarray++;
                     } 
                 }
-                else{
-
-                }
-                    
                     res.send([{Alert:1}]);
                     con.end(); 
             }); 
