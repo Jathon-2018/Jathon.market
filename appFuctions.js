@@ -3,7 +3,7 @@
 var mysql = require('mysql');
 
 var gcm = require('node-gcm');
-
+var notifications = require('./notifications.js');
 
 //-------ตรวจสอบการ Login----------
 exports.Login = function (req, res) 
@@ -425,6 +425,13 @@ exports.shipping = function (req, res)
 
     var detaillist = req.body.detail
         //บันทึกรายละเอียดอาหารลง table
+
+        var store_name = req.body.store_name
+        var statusSend = req.body.statusSend
+        var tokenDevice = []
+        tokenDevice = req.body.datatoken
+
+    console.log(store_name, statusSend, tokenDevice);
         
         
     //เพิ่มใบสั่งรายการอาหาร
@@ -461,6 +468,7 @@ exports.shipping = function (req, res)
                 else{
 
                 }
+                    notifications.sendMessage(store_name,statusSend,tokenDevice);
                     res.send([{Alert:1}]);
                     con.end(); 
             }); 
