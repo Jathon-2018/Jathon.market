@@ -3,7 +3,7 @@ var gcm = require('node-gcm');
 
 
 
-exports.sendMessage = function(req ,state){
+exports.sendMessage = function(req , res){
 
 	var con = mysql.createConnection({
   		host: process.env.DB_HOST,
