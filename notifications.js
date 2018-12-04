@@ -15,8 +15,8 @@ exports.sendMessage = function(req , res){
 	var sql = "SELECT * FROM users WHERE users_status = 1";
 	con.query(sql,[],function(err,result){
 
-		if(result != null)
-		{	
+		
+			
 			var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
             let store_name = req.body.store_name;
             let statusSend = req.body.statusSend;
@@ -25,8 +25,9 @@ exports.sendMessage = function(req , res){
 
 
             let tokens = [];
-            for(var i = 0 ; i < result.length ; i++){
-                tokens.push(result[i].users_tokendevice);
+            var tokenRow = result;
+            for(var i = 0 ; i <= tokenRow.length ; i++){
+                tokens.push(tokenRow[i].users_tokendevice);
             }
 			// regTokens.push(result[0].token);
 			console.log(tokens);
@@ -38,7 +39,7 @@ exports.sendMessage = function(req , res){
             res.send(result);
     		con.end();
 			});
-		}
+		
     });
 	
 	
