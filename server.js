@@ -179,6 +179,11 @@ app.get('/getAdmin',function(req,res){
   appFuctions.getAdmin(req,res);
 });
 
+//---- Update List --------------------
+app.post('/postUpdateList',function(req,res){
+  appFuctions.postUpdateList(req,res);
+});
+
 //---- Send message --------------------
 // app.post('/sendMessage',function(req,res){
 //   appFuctions.sendMessage(req,res);

@@ -623,6 +623,32 @@ exports.getAdmin = function (req, res)
 
 }
 
+exports.postUpdateList = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var list_id = req.body.list_id
+    var list_name = req.body.Product_Name
+    var list_price = req.body.price
+    var list_unit = req.body.unit
+    // var list_type = req.body.users_id
+
+    sql = 'UPDATE list SET list_name = ? ,list_price = ? ,list_unit = ? where list_id = ?';
+    con.query(sql, [list_name,list_price,list_unit,list_id], function (err, result){
+    if (err) throw err;
+    res.send(result);
+    con.end();                                             
+    });
+
+}
+
+
 //========== FCM =============
 
 // exports.sendMessage = function (req, res) {
