@@ -423,7 +423,8 @@ exports.shipping = function (req, res)
     //Select table menu
     var shipping_date_check = new Date();
 
-    var detaillist = req.body.detail
+    var detaillist = []
+    dedetaillist = req.body.detail
         //บันทึกรายละเอียดอาหารลง table
 
         var store_name = req.body.store_name
