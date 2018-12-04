@@ -13,8 +13,8 @@ exports.sendMessage = function(store_name,statusSend,tokenDevice){
 	});
 
     var message = new gcm.Message();
-    message.addData('title','Test'); 
-    message.addData('message','Only files notifications'); 
+    message.addData('title','ร้าน',store_name); 
+    message.addData('message','สถานะการรับของ',statusSend); 
     message.addData('content-available',true); 
     message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
 			
