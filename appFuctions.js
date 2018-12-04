@@ -625,38 +625,37 @@ exports.getAdmin = function (req, res)
 
 //========== FCM =============
 
-exports.sendMessage = function (req, res) {
-
-  var gcm = require('node-gcm');
-
-  var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
-  let store_name = req.body.store_name;
-  let statusSend = req.body.statusSend;
-  let datatoken = req.body.datatoken;
-
-  console.log(store_name, statusSend,datatoken);
-  var regTokens = ["cNYLw6ISCa0:APA91bGRd8R91gOn3hwLzY5K86N2HZ9F10s_BTOWzYGgKDHNX3sgKauV0SADbRGiZMfY4vAT0Uuztq6LGR_7xOuxkyJHSoDGbxSJZMrURm1L7SCdGUcp7vX1gr1AXvI_XpuosR10zK_x"];
+// exports.sendMessage = function (req, res) {
 
 
-  let tokens = [];
-  tokens.push(regTokens[0]);
+//   var sender = new gcm.Sender('AAAA4gLgBcE:APA91bGWvIzWvKWgpW86YcG4UK7BNGO-qk-33Zi2VZcNlK9H1hrjY5YUTkVbKQEKTPfzz6lBJ_u3pt1UAJmCzhWUjfj6qo8JSl8XRKHn4C_pimUyZ1oxbsIiJMSyfJjWvZcVhS_cqsD6');
+//   let store_name = req.body.store_name;
+//   let statusSend = req.body.statusSend;
+//   let datatoken = req.body.datatoken;
+
+//   console.log(store_name, statusSend,datatoken);
+//   var regTokens = ["cNYLw6ISCa0:APA91bGRd8R91gOn3hwLzY5K86N2HZ9F10s_BTOWzYGgKDHNX3sgKauV0SADbRGiZMfY4vAT0Uuztq6LGR_7xOuxkyJHSoDGbxSJZMrURm1L7SCdGUcp7vX1gr1AXvI_XpuosR10zK_x"];
 
 
-    //   let tokens = [];
-    //   tokens.push(datatoken);
-      console.log('dataToken',tokens);
-      let message = new gcm.Message();
-      message.addData('title', 'ส่งเพื่อทดสอบ');
-      message.addData('message', 'ส่งเพื่อทดสอบ');
-      message.addData('content-available', true);
-    //   message.addData('data', { "username": "Satit", "message": "Hello world" });
-      message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
+//   let tokens = [];
+//   tokens.push(regTokens[0]);
 
-      sender.send(message, { registrationTokens: tokens }, (err, response) => {
-        if(err) console.error(err);
-        else console.log(response);
-      });
-      res.send({ ok: true });
+
+//     //   let tokens = [];
+//     //   tokens.push(datatoken);
+//       console.log('dataToken',tokens);
+//       let message = new gcm.Message();
+//       message.addData('title', 'ส่งเพื่อทดสอบ');
+//       message.addData('message', 'ส่งเพื่อทดสอบ');
+//       message.addData('content-available', true);
+//     //   message.addData('data', { "username": "Satit", "message": "Hello world" });
+//       message.addData('image', 'https://sv1.picz.in.th/images/2018/12/04/3JBs1e.png');
+
+//       sender.send(message, { registrationTokens: tokens }, (err, response) => {
+//         if(err) console.error(err);
+//         else console.log(response);
+//       });
+//       res.send({ ok: true });
 
       
-}
+// }
