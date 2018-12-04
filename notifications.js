@@ -21,7 +21,7 @@ exports.sendMessage = function(req , res){
             let store_name = req.body.store_name;
             let statusSend = req.body.statusSend;
 
-            console.log(store_name, statusSend,datatoken);
+            console.log(store_name, statusSend);
 
 
             let tokens = [];
