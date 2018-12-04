@@ -423,8 +423,7 @@ exports.shipping = function (req, res)
     //Select table menu
     var shipping_date_check = new Date();
 
-    var detaillist = []
-    dedetaillist = req.body.detail
+    var detaillist = req.body.detail
         //บันทึกรายละเอียดอาหารลง table
 
         var store_name = req.body.store_name
@@ -432,7 +431,8 @@ exports.shipping = function (req, res)
         var tokenDevice = []
         tokenDevice = req.body.datatoken
 
-       
+    console.log(store_name, statusSend, tokenDevice);
+    notifications.sendMessage(store_name,statusSend,tokenDevice);    
         
     //เพิ่มใบสั่งรายการอาหาร
         sql = `INSERT INTO shipping(shipping_status,shipping_note,shipping_store_id,shipping_users_id,shipping_date,shipping_date_check) 
@@ -465,8 +465,9 @@ exports.shipping = function (req, res)
                         iarray++;
                     } 
                 }
-                console.log(store_name, statusSend, tokenDevice);
-                notifications.sendMessage(store_name,statusSend,tokenDevice); 
+                else{
+
+                }
                     res.send([{Alert:1}]);
                     con.end(); 
             }); 
