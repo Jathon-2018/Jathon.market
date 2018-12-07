@@ -487,7 +487,7 @@ exports.getshippingtoadmin = function (req, res)
         database : process.env.DB_NAME
     });
 
-    sql = "SELECT * FROM shipping ,store WHERE shipping_store_id = store_id";
+    sql = "SELECT * FROM shipping ,store,users WHERE shipping_store_id = store_id and users_id = shipping_users_id";
     con.query(sql, [], function (err, result){
     if (err) throw err;
     var list = result;
