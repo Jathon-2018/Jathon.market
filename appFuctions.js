@@ -564,7 +564,7 @@ exports.getdateshippingforadmin = function (req, res)
 
     var date = req.body.shipping_date
 
-    sql = "SELECT * FROM shipping,store,detail WHERE shipping_store_id = store_id and shipping_id = detail_shipping_id and shipping_date = ? ";
+    sql = "SELECT * FROM shipping,store,detail,users WHERE shipping_store_id = store_id and shipping_id = detail_shipping_id and shipping_date = ? and users_id = shipping_users_id";
     con.query(sql, [date], function (err, result){
     if (err) throw err;
     var list = result;
